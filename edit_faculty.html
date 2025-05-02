@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Faculty Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: url('index_bg.jpg') no-repeat center center/cover;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.05);
+            z-index: -1;
+        }
+
+        header {
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .portal-name {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        header a:hover {
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .main-content {
+            display: flex;
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .left-panel {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            width: 200px;
+        }
+
+        .menu-item {
+            background: rgba(0, 0, 0, 1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s, background-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .menu-item:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: translateY(-3px);
+        }
+
+        .menu-item i {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .container {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 8px;
+            position: relative;
+            margin-left: 2rem;
+        }
+
+        .dashboard-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-header h2 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .search-container {
+            margin-bottom: 2rem;
+        }
+
+        .search-container input[type="text"] {
+            width: 70%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .search-container button {
+            padding: 0.8rem 1.5rem;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .search-container button:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="tel"],
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .availability-container {
+            margin-top: 1.5rem;
+            border-top: 1px solid #ddd;
+            padding-top: 1.5rem;
+        }
+
+        .availability-row {
+            display: flex;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+
+        .availability-row select {
+            margin-right: 1rem;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .availability-row button {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .add-availability {
+            padding: 0.5rem 1rem;
+            background: rgba(0, 123, 255, 0.7);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+        }
+
+        .submit-btn {
+            padding: 0.8rem 1.5rem;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .back-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 0.8rem 1.5rem;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .back-btn:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        .success-message {
+            color: green;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+        
+        .faculty-details {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(240, 240, 240, 0.7);
+            border-radius: 8px;
+        }
+        
+        .faculty-details h3 {
+            margin-top: 0;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="portal-name">University Examination Portal</div>
+        <div>        
+            <a href="dept_co.php">Home</a>
+            <a href="index.html">Logout</a>
+        </div>
+    </header>
+    
+    <div class="main-content">
+        <div class="left-panel">
+            <a href="rooms.php" class="menu-item">
+              <i>💺</i>
+              Rooms
+            </a>
+            <a href="dept_view_attendance.php" class="menu-item">
+                <i>📋</i>
+                Attendance
+            </a>
+            <a href="view_all.php" class="menu-item">
+                <i>👨‍🏫</i>
+                Invigilators
+            </a>
+        </div>
+        
+        <div class="container">
+            <div class="dashboard-header">
+                <h2>Edit Faculty Details</h2>
+            </div>
+            
+            <div class="search-container">
+                <form action="search_faculty.php" method="POST">
+                    <input type="text" id="faculty-search" name="search" placeholder="Enter Faculty ID or Name" required>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+            
+            <div id="error-message" class="error-message"></div>
+            <div id="success-message" class="success-message"></div>
+            
+            <div id="faculty-details" class="faculty-details" style="display: none;">
+                <h3>Faculty Information</h3>
+                <div id="faculty-info"></div>
+            </div>
+            
+            <div id="edit-form" class="form-container" style="display: none;">
+                <form id="faculty-form">
+                    <input type="hidden" id="faculty-id" name="faculty_id">
+                    
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="department">Department:</label>
+                        <input type="text" id="department" name="department" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="availability-container">
+                        <h3>Availability</h3>
+                        <button type="button" class="add-availability" onclick="addAvailabilityRow()">Add Availability</button>
+                        
+                        <div id="availability-rows">
+                            <!-- Availability rows will be added here dynamically -->
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="submit-btn" onclick="updateFaculty()">Update Faculty Details</button>
+                </form>
+            </div>
+            
+            <a href="view_all.php" class="back-btn">Back</a>
+        </div>
+    </div>
+
+    <script>
+        // The search functionality is now handled by the form submission
+        // The rest of the JavaScript code remains unchanged
+    </script>
+</body>
+</html>

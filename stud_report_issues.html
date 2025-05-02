@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Issues</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: url('index_bg.jpg') no-repeat center center/cover;
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.05);
+            z-index: -1;
+        }
+        header {
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .portal-name {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        header a:hover {
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .main-content {
+            display: flex;
+            flex: 1;
+            padding: 2rem;
+        }
+        .tab-menu {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            width: 200px;
+        }
+        .tab-item {
+            background: rgba(0, 0, 0, 1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s, background-color 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .tab-item:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: translateY(-3px);
+        }
+        .tab-item a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        .tab-item i {
+            display: block;
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+            text-align: center;
+        }
+        .dashboard {
+            flex: 1;
+            margin-left: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        .dashboard-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+        }
+        .dashboard-header h2 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .report-form {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        .submit-btn {
+            background-color: #2e8b57;
+            color: #fff;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #1f6b41;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="portal-name">University Examination Portal</div>
+
+
+        <div>
+            <a href="student_home.php">Home</a>
+            <a href="index.html">Logout</a>
+        </div>
+    </header>
+    <div class="main-content">
+
+        <div class="tab-menu">
+            <div class="tab-item">
+                <a href="download.php">
+                    <i>🎫</i>
+                    Hall Ticket
+                </a>
+            </div>
+            <div class="tab-item">
+                <a href="stud_attendance.php">
+                    <i>📋</i>
+                    Attendance
+                </a>
+            </div>
+            <div class="tab-item">
+                <a href="stud_seat.html">
+                    <i>💺</i>
+                    Seating
+                </a>
+            </div>
+            <div class="tab-item">
+                <a href="#">
+                    <i>📊</i>
+                    Report
+                </a>
+            </div>
+        </div>
+        <div class="dashboard">
+            <div class="dashboard-header">
+                <h2>Report an Issue</h2>
+            </div>
+            <div class="report-form">
+                <form action="stud_issue_enter.php" method="post">
+                    <div class="form-group">
+                        <label>Issue Type</label>
+                        <textarea style="height: 50px;" name="issue_type" placeholder="Enter issue type" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea style="height: 50px;" name="issue_desc" placeholder="Describe your issue in detail" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Report</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
